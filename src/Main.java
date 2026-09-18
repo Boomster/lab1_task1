@@ -192,7 +192,6 @@ class Main {
     }
     return a;
   }
-
   public void guessGame(){
     Scanner sc = new Scanner(System.in);
     Main m = new Main();
@@ -229,6 +228,21 @@ class Main {
     }
     System.out.println("Вы отгадали число за "+ tries + outtries);
   }
+
+  //4.1
+  public int findFirst(int[] arr, int x){
+    int pos = -1;
+
+    return -1;
+  }
+  //4.3
+
+  //4.6
+
+  //4.7
+
+  //4.8
+
 
   public static void main(String[] args){
     Scanner sc = new Scanner(System.in);
@@ -303,5 +317,8 @@ class Main {
 
     System.out.println("3.10 guessGame");
     m.guessGame();*/
+
+    System.out.println("4.1 findFirst");
+
   }
 }
