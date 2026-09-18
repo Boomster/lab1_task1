@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 //task 1: 1,4,5,8,9
 //task 2: 3,5,7,8,10
@@ -21,6 +22,30 @@ class Main {
     }
     return a;
   }
+
+  public int checkInputPosInt(Scanner sc, String name){
+    int a = 0;
+    boolean gotNumber = false;
+    System.out.print(name + " = ");
+
+    while (!gotNumber) {
+      String str = sc.next();
+      try {
+        a = Integer.parseInt(str);
+        if (a >= 0) {
+          gotNumber = true;
+        } else {
+          System.out.println("This is not a positive integer!");
+          System.out.print(name + " = ");
+        }
+      } catch (Exception e) {
+        System.out.println("This is not an integer!");
+        System.out.print(name + " = ");
+      }
+    }
+    return a;
+  }
+
   public double checkInputDouble(Scanner sc, String name){
     double a = 0.;
     boolean gotNumber = false;
@@ -76,6 +101,12 @@ class Main {
     else return c;
   }
   //2.8
+  public int numType(int x){
+    int rem = x % 10;
+    if (rem == 1 && x != 11) return 1;
+    else if (rem < 5 && (x < 11 || x > 14)) return 2;
+    else return 3;
+  }
   public String age(int x){
     int rem = x % 10;
     if (rem == 1 && x != 11) return x + " год";
@@ -101,57 +132,176 @@ class Main {
     System.out.print(days);
   }
 
+  //3.2
+  public String reverseListNums(int x){
+    String reverse = "";
+    for (int i = x; i >= 0; i--) {
+      reverse += i + " ";
+    }
+    reverse = reverse.trim();
+    return reverse;
+  }
+  //3.4
+  public int pow(int x, int y){
+    int res = 1;
+    for (int i = 0; i < y; i++) {
+      res *= x;
+    }
+    return res;
+  }
+  //3.6
+  public boolean equalNum(int x){
+    boolean check = true;
+    int t = x;
+    int c = t % 10;
+    t = t / 10;
+    while (t > 0 && check){
+      if (t % 10 != c) check = false;
+      t = t / 10;
+    }
+    return check;
+  }
+  //3.9
+  public void rightTriangle(int x){
+    for (int i = 0; i < x; i++) {
+      for (int j = 0; j < x-i-1; j++) {
+        System.out.print(" ");
+      }
+      for (int j = x-i-1; j < x; j++) {
+        System.out.print("*");
+      }
+      System.out.println();
+    }
+  }
+  //3.10
+  public int inputIntGuess(Scanner sc){
+    int a = 0;
+    boolean gotNumber = false;
 
+    while (!gotNumber) {
+      String str = sc.next();
+      try {
+        a = Integer.parseInt(str);
+        if(a >= 0 && a < 10) gotNumber = true;
+        else {
+          System.out.println("Нужно ввести число от 0 до 9:");
+        }
+      } catch (Exception e) {
+        System.out.println("Нужно ввести число от 0 до 9:");
+      }
+    }
+    return a;
+  }
+
+  public void guessGame(){
+    Scanner sc = new Scanner(System.in);
+    Main m = new Main();
+    boolean gotanswer = false;
+    int tries = 0;
+    int guess, x;
+    Random random = new Random();
+    System.out.println("Введите число от 0 до 9:");
+    do {
+      guess = random.nextInt(10);
+      //System.out.println("Тайное число: "+ guess); для лёгкой проверки
+      x = m.inputIntGuess(sc);
+      tries++;
+      if (guess == x) gotanswer = true;
+      else {
+        System.out.println("Вы не угадали, введите число от 0 до 9:");
+      }
+    } while (!gotanswer);
+    System.out.println("Вы угадали!");
+    String outtries = " ";
+    int t = m.numType(tries);
+    switch (t){
+      case 1:
+        outtries = outtries + "попытку";
+        break;
+      case 2:
+        outtries = outtries + "попытки";
+        break;
+      case 3:
+        outtries = outtries + "попыток";
+        break;
+      default:
+        break;
+    }
+    System.out.println("Вы отгадали число за "+ tries + outtries);
+  }
 
   public static void main(String[] args){
     Scanner sc = new Scanner(System.in);
     Main m = new Main();
+    double d;
+    int a,b,c,x,y;
+    String s;
     /*
     System.out.println("1.1 Fraction");
-    double a11 = m.checkInputDouble(sc,"x");
-    System.out.println(m.fraction(a11));
+    d = m.checkInputDouble(sc,"x");
+    System.out.println(m.fraction(d));
 
     System.out.println("1.4 isPositive");
-    int a14 = m.checkInputInt(sc, "x");
-    System.out.println(m.isPositive(a14));
+    x = m.checkInputInt(sc, "x");
+    System.out.println(m.isPositive(x));
 
     System.out.println("1.5 is2Digit");
-    int a15 = m.checkInputInt(sc, "x");
-    System.out.println(m.is2Digits(a15));
+    x = m.checkInputInt(sc, "x");
+    System.out.println(m.is2Digits(x));
 
     System.out.println("1.8 isDevisor");
-    int a18 = m.checkInputInt(sc, "a");
-    int b18 = m.checkInputInt(sc, "b");
-    System.out.println(m.isDevisor(a18, b18));
+    a = m.checkInputInt(sc, "a");
+    b = m.checkInputInt(sc, "b");
+    System.out.println(m.isDevisor(a, b));
 
     System.out.println("1.9 isEqual");
-    int a19 = m.checkInputInt(sc, "a");
-    int b19 = m.checkInputInt(sc, "b");
-    int c19 = m.checkInputInt(sc, "c");
-    System.out.println(m.isEqual(a19,b19,c19));*/
+    a = m.checkInputInt(sc, "a");
+    b = m.checkInputInt(sc, "b");
+    c = m.checkInputInt(sc, "c");
+    System.out.println(m.isEqual(a,b,c));*/
     /*
     System.out.println("2.3 is35");
-    int a23 = m.checkInputInt(sc, "x");
-    System.out.println(m.is35(a23));
+    x = m.checkInputInt(sc, "x");
+    System.out.println(m.is35(x));
 
     System.out.println("2.5 max3");
-    int a25 = m.checkInputInt(sc, "a");
-    int b25 = m.checkInputInt(sc, "b");
-    int c25 = m.checkInputInt(sc, "c");
-    System.out.println(m.max3(a25,b25,c25));
+    a = m.checkInputInt(sc, "a");
+    b = m.checkInputInt(sc, "b");
+    c = m.checkInputInt(sc, "c");
+    System.out.println(m.max3(a,b,c));
 
     System.out.println("2.7 sum2");
-    int a27 = m.checkInputInt(sc, "a");
-    int b27 = m.checkInputInt(sc, "b");
-    System.out.println(m.sum2(a27,b27));
+    a = m.checkInputInt(sc, "a");
+    b = m.checkInputInt(sc, "b");
+    System.out.println(m.sum2(a,b));
 
     System.out.println("2.8 age");
-    int a28 = m.checkInputInt(sc, "x");
-    System.out.println(m.age(a28));
+    x = m.checkInputInt(sc, "x");
+    System.out.println(m.age(x));
 
     System.out.println("2.10 printDays");
     System.out.print("x = ");
-    String s210 = sc.next();
-    m.printDays(s210);*/
+    s = sc.next();
+    m.printDays(s);*/
+    /*
+    System.out.println("3.2 reverseListNums");
+    x = m.checkInputInt(sc, "x");
+    System.out.println(m.reverseListNums(x));
+
+    System.out.println("3.4 pow");
+    x = m.checkInputInt(sc, "x");
+    y = m.checkInputPosInt(sc, "y");
+    System.out.println(m.pow(x,y));
+
+    System.out.println("3.6 equalNum");
+    x = m.checkInputPosInt(sc, "x");
+    System.out.println(m.equalNum(x));
+
+    System.out.println("3.9 rightTriangle");
+    x = m.checkInputPosInt(sc, "x");
+    m.rightTriangle(x);
+
+    System.out.println("3.10 guessGame");
+    m.guessGame();*/
   }
 }
