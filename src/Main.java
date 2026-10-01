@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 //task 1: 1,4,5,8,9
@@ -228,21 +229,63 @@ class Main {
     }
     System.out.println("Вы отгадали число за "+ tries + outtries);
   }
+  
+  public void inputArray(int[] arr, Scanner sc){
+    System.out.println("Заполните массив");
+    for (int i = 0; i < arr.length; i++) {
+      arr[i] = checkInputInt(sc,"["+i+"]");
+    }
+  }
 
   //4.1
   public int findFirst(int[] arr, int x){
     int pos = -1;
-
-    return -1;
+    boolean found = false;
+    for (int i = 0; i < arr.length && !found; i++) {
+      if (arr[i] == x) {
+        pos = i;
+        found = true;
+      }
+    }
+    return pos;
   }
   //4.3
-
+  public int maxAbs (int[] arr){
+    if (arr.length == 0){
+      System.out.println("Пустота пуста.");
+      return 0;
+    }
+    int maxAbsi = 0;
+    for (int i = 1; i < arr.length; i++) {
+      if (Math.abs(arr[i]) > Math.abs(arr[maxAbsi])){
+        maxAbsi = i;
+      }
+    }
+    return arr[maxAbsi];
+  }
   //4.6
-
+  public void reverse (int[] arr){
+    for (int i = 0; i < arr.length/2; i++) {
+      int tmp = arr[i];
+      arr[i] = arr[arr.length-1-i];
+      arr[arr.length-1-i] = tmp;
+    }
+  }
   //4.7
-
+  public int[] reverseBack (int[] arr){
+    int[] newarr = new int[arr.length];
+    for (int i = 0; i < arr.length; i++) {
+      newarr[i] = arr[arr.length-1-i];
+    }
+    return newarr;
+  }
   //4.8
-
+  public int[] concat (int[] arr1,int[] arr2){
+    int[] newarr = new int[arr1.length+arr2.length];
+      System.arraycopy(arr1, 0, newarr, 0, arr1.length);
+      System.arraycopy(arr2, 0, newarr, arr1.length, arr2.length);
+    return newarr;
+  }
 
   public static void main(String[] args){
     Scanner sc = new Scanner(System.in);
@@ -318,7 +361,41 @@ class Main {
     System.out.println("3.10 guessGame");
     m.guessGame();*/
 
-    System.out.println("4.1 findFirst");
 
+    int l,pos, elem;
+    int[] task, task2;
+    /*System.out.println("Введите длину массива:");
+    l = m.checkInputPosInt(sc, "Длина массива");
+    task = new int[l];
+    m.inputArray(task, sc);
+
+    System.out.println("4.1 findFirst");
+    x = m.checkInputInt(sc, "x");
+    pos = m.findFirst(task, x);
+    System.out.println("Результат: " + pos);
+
+    System.out.println("4.3 maxAbs");
+    elem = m.maxAbs(task);
+    System.out.println("Результат: " + elem);
+
+    System.out.println("4.6 reverse");
+    m.reverse(task);
+    System.out.println("Результат: "+Arrays.toString(task));
+
+    System.out.println("4.7 reverseBack");
+    task2 = m.reverseBack(task);
+    System.out.println("Результат: "+Arrays.toString(task2));*/
+
+    System.out.println("4.8 concat");
+    System.out.println("Введите длину массива 1:");
+    l = m.checkInputPosInt(sc, "Длина массива");
+    task = new int[l];
+    m.inputArray(task, sc);
+    System.out.println("Введите длину массива 2:");
+    l = m.checkInputPosInt(sc, "Длина массива");
+    task2 = new int[l];
+    m.inputArray(task2, sc);
+    int[] resarr = m.concat(task, task2);
+    System.out.println("Результат: "+Arrays.toString(resarr));
   }
 }
