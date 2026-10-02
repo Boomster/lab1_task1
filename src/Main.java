@@ -78,6 +78,7 @@ class Main {
   }
   //1.8
   public boolean isDevisor(int a, int b){
+    if (a == 0 && b == 0) return false;
     return a == 0 || b == 0 || (a % b == 0 || b % a == 0);
   }
   //1.9
@@ -104,14 +105,16 @@ class Main {
   //2.8
   public int numType(int x){
     int rem = x % 10;
-    if (rem == 1 && x != 11) return 1;
-    else if (rem < 5 && (x < 11 || x > 14)) return 2;
+    if(x > 10 && x < 15) return 3;
+    if (rem == 1) return 1;
+    else if (rem < 5) return 2;
     else return 3;
   }
   public String age(int x){
     int rem = x % 10;
-    if (rem == 1 && x != 11) return x + " год";
-    else if (rem < 5 && (x < 11 || x > 14)) return x + " года";
+    if(x > 10 && x < 15) return x + " лет";
+    if (rem == 1) return x + " год";
+    else if (rem < 5) return x + " года";
     else return x + " лет";
   }
   //2.10
@@ -165,11 +168,9 @@ class Main {
   //3.9
   public void rightTriangle(int x){
     for (int i = 0; i < x; i++) {
-      for (int j = 0; j < x-i-1; j++) {
-        System.out.print(" ");
-      }
-      for (int j = x-i-1; j < x; j++) {
-        System.out.print("*");
+      for (int j = 0; j < x; j++) {
+        if (j < x-i-1) System.out.print(" ");
+        else System.out.print("*");
       }
       System.out.println();
     }
