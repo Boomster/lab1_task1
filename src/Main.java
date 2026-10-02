@@ -69,7 +69,7 @@ class Main {
   }
   //1.4
   public boolean isPositive (int x){
-    return x >= 0;
+    return x > 0;
   }
   //1.5
   public boolean is2Digits (int x){
@@ -92,9 +92,11 @@ class Main {
   }
   //2.5
   public int max3(int a, int b,  int c){
-    if (a >= b && a >= c) return a;
-    else if (b >= c) return b;
-    else return c;
+    int x;
+    if (a >= b) x = a;
+    else x = b;
+    if (c >= x) x = c;
+    return x;
   }
   //2.7
   public int sum2(int a, int b){
@@ -294,7 +296,7 @@ class Main {
     double d;
     int a,b,c,x,y;
     String s;
-    /*
+
     System.out.println("1.1 Fraction");
     d = m.checkInputDouble(sc,"x");
     System.out.println(m.fraction(d));
@@ -316,7 +318,7 @@ class Main {
     a = m.checkInputInt(sc, "a");
     b = m.checkInputInt(sc, "b");
     c = m.checkInputInt(sc, "c");
-    System.out.println(m.isEqual(a,b,c));*/
+    System.out.println(m.isEqual(a,b,c));
     /*
     System.out.println("2.3 is35");
     x = m.checkInputInt(sc, "x");
@@ -386,7 +388,7 @@ class Main {
     System.out.println("4.7 reverseBack");
     task2 = m.reverseBack(task);
     System.out.println("Результат: "+Arrays.toString(task2));*/
-
+    /*
     System.out.println("4.8 concat");
     System.out.println("Введите длину массива 1:");
     l = m.checkInputPosInt(sc, "Длина массива");
@@ -396,6 +398,6 @@ class Main {
     l = m.checkInputPosInt(sc, "Длина массива");
     task2 = new int[l];
     m.inputArray(task2, sc);
-    System.out.println("Результат: "+Arrays.toString(m.concat(task, task2)));
+    System.out.println("Результат: "+Arrays.toString(m.concat(task, task2)));*/
   }
 }
