@@ -396,7 +396,6 @@ class Main {
     l = m.checkInputPosInt(sc, "Длина массива");
     task2 = new int[l];
     m.inputArray(task2, sc);
-    int[] resarr = m.concat(task, task2);
-    System.out.println("Результат: "+Arrays.toString(resarr));
+    System.out.println("Результат: "+Arrays.toString(m.concat(task, task2)));
   }
 }
