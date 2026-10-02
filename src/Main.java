@@ -132,7 +132,7 @@ class Main {
       case "воскресенье": days = days + "воскресенье\n";
         break;
       default:
-        days = "это не день недели";
+        days = "это не день недели\n";
         break;
     }
     System.out.print(days);
@@ -319,7 +319,7 @@ class Main {
     b = m.checkInputInt(sc, "b");
     c = m.checkInputInt(sc, "c");
     System.out.println(m.isEqual(a,b,c));
-    /*
+
     System.out.println("2.3 is35");
     x = m.checkInputInt(sc, "x");
     System.out.println(m.is35(x));
@@ -342,10 +342,10 @@ class Main {
     System.out.println("2.10 printDays");
     System.out.print("x = ");
     s = sc.next();
-    m.printDays(s);*/
-    /*
+    m.printDays(s);
+
     System.out.println("3.2 reverseListNums");
-    x = m.checkInputInt(sc, "x");
+    x = m.checkInputPosInt(sc, "x");
     System.out.println(m.reverseListNums(x));
 
     System.out.println("3.4 pow");
@@ -362,12 +362,12 @@ class Main {
     m.rightTriangle(x);
 
     System.out.println("3.10 guessGame");
-    m.guessGame();*/
+    m.guessGame();
 
 
     int l,pos, elem;
     int[] task, task2;
-    /*System.out.println("Введите длину массива:");
+    System.out.println("Введите длину массива:");
     l = m.checkInputPosInt(sc, "Длина массива");
     task = new int[l];
     m.inputArray(task, sc);
@@ -387,8 +387,8 @@ class Main {
 
     System.out.println("4.7 reverseBack");
     task2 = m.reverseBack(task);
-    System.out.println("Результат: "+Arrays.toString(task2));*/
-    /*
+    System.out.println("Результат: "+Arrays.toString(task2));
+
     System.out.println("4.8 concat");
     System.out.println("Введите длину массива 1:");
     l = m.checkInputPosInt(sc, "Длина массива");
@@ -398,6 +398,6 @@ class Main {
     l = m.checkInputPosInt(sc, "Длина массива");
     task2 = new int[l];
     m.inputArray(task2, sc);
-    System.out.println("Результат: "+Arrays.toString(m.concat(task, task2)));*/
+    System.out.println("Результат: "+Arrays.toString(m.concat(task, task2)));
   }
 }
